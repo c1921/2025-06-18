@@ -11,7 +11,12 @@ onMounted(() => {
 
 <template>
   <div class="p-2 bg-base-200">
-    <CardContainer />
+    <label class="swap swap-rotate">
+      <input type="checkbox" value="light" class="theme-controller" />
+      <span class="swap-off icon-[tabler--sun] size-7"></span>
+      <span class="swap-on icon-[tabler--moon] size-7"></span>
+    </label>
     <ProgressStep :current-step="10" :total-steps="20" :is-completed="false" />
+    <CardContainer />
   </div>
 </template>

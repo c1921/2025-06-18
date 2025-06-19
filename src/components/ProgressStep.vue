@@ -4,7 +4,7 @@
       v-for="step in totalSteps" 
       :key="step"
       class="progress-step" 
-      :class="step <= currentStep ? 'bg-primary' : 'bg-primary/10'"
+      :class="step <= currentStep ? 'bg-primary/50' : 'bg-primary/10'"
       role="progressbar" 
       aria-label="Progressbar" 
       :aria-valuenow="step <= currentStep ? 100 : 0"
@@ -15,7 +15,7 @@
       <span 
         :class="[
           'icon-[tabler--circle-check-filled] size-6', 
-          isCompleted ? 'text-primary' : 'text-primary/10'
+          isCompleted ? 'text-primary/50' : 'text-primary/10'
         ]"
       ></span>
     </p>
