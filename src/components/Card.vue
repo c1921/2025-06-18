@@ -1,6 +1,6 @@
 <template>
-  <div class="rounded-box p-2.5 bg-base-100 hover:bg-neutral/30 transition duration-500">
-    <div class="flex gap-3">
+  <div class="relative rounded-box p-2.5 bg-base-100 group hover:bg-base-100/50 transition duration-500">
+    <div class="relative flex gap-3 z-10">
 
       <div class="progress progress-vertical h-auto" role="progressbar" aria-valuenow="25" aria-valuemin="0"
         aria-valuemax="100">
@@ -37,7 +37,7 @@
 
           </div>
 
-          <div class="flex-1 w-32 h-10 chart-mask">
+          <div class="flex-1 w-32 h-10 mask-radial-[100%_100%] mask-radial-from-70% mask-radial-at-right">
             <canvas ref="chartCanvas"></canvas>
           </div>
 
@@ -45,6 +45,14 @@
 
       </div>
 
+    </div>
+    <div class="absolute inset-0 z-0">
+      <!-- 背景内容-->
+      <div class="w-full h-full rounded-box
+        bg-linear-to-b from-primary/30 group-hover:from-primary to-30%
+        mask-x-from-65% mask-x-to-100%
+        animate-pulse group-hover:animate-none transition duration-500">
+      </div>
     </div>
   </div>
 </template>
@@ -186,10 +194,3 @@ const stopDataUpdates = () => {
   }
 };
 </script>
-
-<style scoped>
-.chart-mask {
-  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
-  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
-}
-</style>
