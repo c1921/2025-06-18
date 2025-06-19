@@ -1,27 +1,8 @@
 <template>
-
   <div class="relative rounded-box p-2.5 bg-base-100 group hover:bg-base-100/50 transition duration-500">
-    <!-- 遮罩层容器 -->
-    <div class="absolute inset-0">
-      <!-- 锁图标遮罩层 -->
-      <div class="absolute inset-0 z-3">
-        <div class="w-full h-full rounded-box bg-base-100 mask-l-from-25% mask-l-to-75%
-        grid grid-cols-4 grid-rows-1">
-          <div class="col-start-4 flex items-center justify-center">
-            <span class="icon-[tabler--lock-filled] size-10 text-neutral/10"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 网格图案遮罩层 -->
-      <div class="absolute inset-0 z-2">
-        <div class="w-full h-full rounded-box bg-base-100/50
-        bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] 
-        bg-[size:10px_10px] [--pattern-fg:var(--color-neutral)]/10">
-        </div>
-      </div>
-
-    </div>
+    <!-- 根据locked属性决定是否显示遮罩层 -->
+    <CardMaskLayers v-if="locked" />
+    <CardGradientBackground />
 
     <!-- 主要内容 -->
     <div class="flex gap-3 z-1 relative">
@@ -61,15 +42,6 @@
         </div>
       </div>
     </div>
-
-    <div class="absolute inset-0 z-0">
-      <!-- 背景渐变层-->
-      <div class="w-full h-full rounded-box
-        bg-linear-to-b from-primary/30 group-hover:from-primary/50 to-30%
-        mask-x-from-65% mask-x-to-100%
-        animate-pulse group-hover:animate-none transition duration-500">
-      </div>
-    </div>
   </div>
 </template>
 
@@ -77,6 +49,17 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { Chart, registerables } from 'chart.js';
 import type { ChartData, ScriptableContext } from 'chart.js';
+import CardMaskLayers from './CardMaskLayers.vue';
+import CardGradientBackground from './CardGradientBackground.vue';
+
+// 定义props
+interface Props {
+  locked?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  locked: false
+});
 
 // 注册所有Chart.js组件
 Chart.register(...registerables);
