@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 
 interface Props {
   currentStep: number;
@@ -31,9 +30,5 @@ interface Props {
   isCompleted?: boolean;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  currentStep: 0,
-  totalSteps: 10,
-  isCompleted: false
-});
+defineProps<Props>();
 </script>

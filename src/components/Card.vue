@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { Chart, registerables } from 'chart.js';
 import type { ChartData, ScriptableContext } from 'chart.js';
 import CardMaskLayers from './CardMaskLayers.vue';
@@ -58,10 +58,7 @@ interface Props {
   showDetails?: boolean;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  locked: false,
-  showDetails: true
-});
+defineProps<Props>();
 
 // 注册所有Chart.js组件
 Chart.register(...registerables);
