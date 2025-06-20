@@ -1,5 +1,5 @@
 <template>
-  <div id="card-container" class="flex flex-col gap-1 py-4 w-full md:w-2xl md:mx-auto">
+  <div id="card-container" class="flex flex-col gap-1 w-full md:w-2xl md:mx-auto">
     <!-- 前三个卡片（已解锁） -->
     <div v-for="index in 3" :key="'unlocked-'+index" class="relative group cursor-move">
       <Card :locked="false" :show-details="showDetails" />
