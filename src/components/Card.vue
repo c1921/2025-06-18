@@ -18,8 +18,8 @@
               <div class="status status-error animate-ping"></div>
               <div class="status status-error"></div>
             </div>
-            <span class="icon-[tabler--sword]"></span>
-            <span class="font-bold">Server</span>
+            <span class="icon-[tabler--number]"></span>
+            <span class="font-bold">Number</span>
           </div>
           <div class="flex gap-1">
             <p class="text-base-content/90 font-medium">24,895</p>
@@ -30,7 +30,7 @@
           </div>
         </div>
 
-        <div class="flex justify-between items-end">
+        <div class="flex justify-between items-end" :class="{ 'h-0 opacity-0': !showDetails }">
           <div class="grid grid-cols-3">
             <span class="icon-[tabler--alert-triangle] size-5 text-warning/50"></span>
             <span class="icon-[tabler--alert-triangle] size-5 text-warning/50"></span>
@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { Chart, registerables } from 'chart.js';
 import type { ChartData, ScriptableContext } from 'chart.js';
 import CardMaskLayers from './CardMaskLayers.vue';
@@ -55,10 +55,12 @@ import CardGradientBackground from './CardGradientBackground.vue';
 // 定义props
 interface Props {
   locked?: boolean;
+  showDetails?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  locked: false
+  locked: false,
+  showDetails: true
 });
 
 // 注册所有Chart.js组件

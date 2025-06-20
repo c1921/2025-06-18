@@ -2,12 +2,12 @@
   <div id="card-container" class="flex flex-col gap-1 py-4 w-full md:w-2xl md:mx-auto">
     <!-- 前三个卡片（已解锁） -->
     <div v-for="index in 3" :key="'unlocked-'+index" class="relative group cursor-move">
-      <Card :locked="false" />
+      <Card :locked="false" :show-details="showDetails" />
     </div>
-    
+
     <!-- 后三个卡片（未解锁） -->
     <div v-for="index in 3" :key="'locked-'+index" class="relative group cursor-move">
-      <Card :locked="true" />
+      <Card :locked="true" :show-details="showDetails" />
     </div>
   </div>
 </template>
@@ -16,6 +16,11 @@
 import { onMounted, nextTick } from 'vue';
 import Sortable from 'sortablejs';
 import Card from './Card.vue';
+
+// 定义props
+defineProps<{
+  showDetails: boolean;
+}>();
 
 onMounted(async () => {
   // 等待下一个DOM更新周期
